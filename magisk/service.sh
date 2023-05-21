@@ -23,10 +23,10 @@ maybe_set_prop ro.boot.hwcountry China GLOBAL
 resetprop --delete ro.build.selinux
 
 # SELinux permissive
-if [[ "$(cat /sys/fs/selinux/enforce)" == "0" ]]; then
-    chmod 640 /sys/fs/selinux/enforce
-    chmod 440 /sys/fs/selinux/policy
-fi
+#if [[ "$(cat /sys/fs/selinux/enforce)" == "0" ]]; then
+#    chmod 640 /sys/fs/selinux/enforce
+#    chmod 440 /sys/fs/selinux/policy
+#fi
 
 # Late props which must be set after boot_completed
 {
