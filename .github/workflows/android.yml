@@ -13,24 +13,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
     - name: set up JDK 8
       uses: actions/setup-java@v3
       with:
         java-version: '8'
         distribution: 'temurin'
         cache: gradle
-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
       
     - name: Setup Android NDK
       uses: nttld/setup-ndk@v1.2.0
       with:
         ndk-version: r21e
         add-to-path: true
-  
-    - name: fetch code
-      uses: actions/checkout@v3
 
     - name: Build 
       run: |
@@ -41,6 +36,7 @@ jobs:
         ndk-build -j4 NDK_DEBUG=0
         popd
         pushd java
+        chmod +x ./gradlew
         ./gradlew assembleRelease
         popd
         mkdir -p magisk/zygisk
